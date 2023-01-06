@@ -1,6 +1,4 @@
 import altair as alt
-import pandas as pd
-from pandas import DataFrame
 from snowflake.snowpark.session import Session
 from config import connection_parameters
 import streamlit as st
@@ -34,15 +32,14 @@ def inegiDataSet():
     initial_sidebar_state="expanded",)
     st.header("Censo y población México")
     
-
     with st.sidebar:
         image = Image.open('img/inegi.png')
         st.image(image, caption='INEGI',width=220)
-        add_n_lines = st.slider("Elige volumen de problación (# habitantes):", 700000, 17000000,2125000 ,500000)
-    query = "SELECT * FROM INEGI.PUBLIC.INEGI_MAPA where POBLACION_TOTAL > " + str(add_n_lines) + " order by POBLACION_TOTAL desc;"
-    sesion = snowsesion()
-    snowDF = run_query(sesion,query)
-    snowPD = snowDF.to_pandas()
+        add_n_hab = st.slider("Elige volumen de problación (# habitantes):", 700000, 17000000,2125000 ,500000)
+        query = "SELECT * FROM INEGI.PUBLIC.INEGI_MAPA where POBLACION_TOTAL > " + str(add_n_hab) + " order by POBLACION_TOTAL desc;"
+        sesion = snowsesion()
+        snowDF = run_query(sesion,query)
+        snowPD = snowDF.to_pandas()
     
     
     col1,col2 = st.columns([3,1])
@@ -54,7 +51,8 @@ def inegiDataSet():
             
 
     with col2:
-        with st.container():   
+        with st.container():  
+            st.write('Valores totales:') 
             totalpod = snowPD['POBLACION_TOTAL'].sum()
             formatoTotal = formatoNumero(totalpod)
             st.markdown(divContainer(), unsafe_allow_html=True)
@@ -69,7 +67,7 @@ def inegiDataSet():
 
 
     with st.container():
-        st.subheader('Histograma por entidad')
+        st.subheader('Histograma por entidad > a ' + formatoNumero(add_n_hab) + ' habitantes')
         barDF = snowPD[['NOM_ENTIDAD','POBLACION_TOTAL']]
         chart = alt.Chart(barDF).mark_bar().encode(
         x='NOM_ENTIDAD',
@@ -81,3 +79,4 @@ def inegiDataSet():
         st.table(snowPD)  
 
 inegiDataSet()
+
