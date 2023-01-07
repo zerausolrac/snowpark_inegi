@@ -70,13 +70,18 @@ Ejecutar en Jupyter Notebook para cada uno de los siguientes Notebooks, en Visua
 
 ```shell
 conda activate snowpark_env
-streamlit run 04_Streamlit.py
 ```
-
 
 <ul>
 <li>01_INEGI_download.ipynb</li>
 <li>02_INEGI_dataEngineering.ipynb</li>
 <li>03_INEGI_dataModeling.ipynb</li>
-<li>04_Streamlit.py</li>
+<li>04_Streamlit.py
+ para esta apartado ejecutar en Visual Studio Code (o en otra terminal):
+ 
+ ```shell
+streamlit run 04_Streamlit.py
+```
+
+</li>
 </ul>
