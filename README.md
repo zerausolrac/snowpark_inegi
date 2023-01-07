@@ -76,7 +76,7 @@ conda activate snowpark_env
 <li>01_INEGI_download.ipynb</li>
 <li>02_INEGI_dataEngineering.ipynb</li>
 <li>03_INEGI_dataModeling.ipynb</li>
-<li>04_Streamlit.py
+<li>04_Streamlit.py <br>
  para esta apartado ejecutar en Visual Studio Code (o en otra terminal):
  
  ```shell
