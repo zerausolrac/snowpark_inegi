@@ -38,12 +38,13 @@ git clone https://github.com/sfc-gh-csuarez/snowpark_inegi.git
 ```
 Después de la descarga ingresar a la carpeta **snowpark_inegi-main** y abrir con Visual Studio Code o el editor de preferencia que soporte archivos Jupyter Notebook  
 
-<h4>Creación de abiente de desarrollo Python</h4> 
+<h4>Creación de ambiente de desarrollo Python</h4> 
 Crear un ambiente local de desarrollo para la instalación de algunas librerias así como de Snowpark con la versión Python 3.8.
 Teniendo Anaconda instalado con la aplicaicón terminal, apuntar a la carpeta donde de descargo el clon de github, para crear un ambiente de desarrollo ejecutar:
 
 ```shell
-conda create --name snowpark_env python=3.8  
+conda create --name snowpark_env python=3.8 
+conda activate snowpark_env
 ```
 
 <h4>Instalación Snowpark Python</h4> 
@@ -62,3 +63,20 @@ conda install -c conda-forge pillow
 ```shell
 conda install -c conda-forge streamlit  
 ```
+
+## Ejecución
+
+Ejecutar en Jupyter Notebook para cada uno de los siguientes Notebooks, en Visual Studio Code (o terminal) ejecutar:
+
+```shell
+conda activate snowpark_env
+streamlit run 04_Streamlit.py
+```
+
+
+<ul>
+<li>01_INEGI_download.ipynb</li>
+<li>02_INEGI_dataEngineering.ipynb</li>
+<li>03_INEGI_dataModeling.ipynb</li>
+<li>04_Streamlit.py</li>
+</ul>
