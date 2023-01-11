@@ -15,7 +15,7 @@
 ![App](https://github.com/sfc-gh-csuarez/snowpark_inegi/blob/main/img/st1.png)
 
 ### Qué necesitas 
-- Cuenta [GitHub](https://github.com/)  
+- Acceso a [GitHub](https://github.com/)  
 - [VSCode](https://code.visualstudio.com/download) con Jupyter Notebook
 - [SnowSQL](https://developers.snowflake.com/snowsql/)  
 - [Python](https://www.python.org/) (Python 3.8)
@@ -28,10 +28,9 @@
 
 
 ## Instalación
-
 <h4>Código fuente</h4>
-Decargar el repositorio que contiene el código necesario
-[github repo](https://github.com/sfc-gh-csuarez/snowpark_inegi.git)
+Decargar el repositorio que contiene el código en [Github repo](https://github.com/sfc-gh-csuarez/snowpark_inegi.git):
+
 
 ```shell
 git clone https://github.com/sfc-gh-csuarez/snowpark_inegi.git 
@@ -58,11 +57,6 @@ conda install -c conda-forge streamlit
 conda install -c conda-forge pillow
 ```
 
-<h4>Instalación Streamlit </h4> 
-
-```shell
-conda install -c conda-forge streamlit  
-```
 
 ## Ejecución
 
