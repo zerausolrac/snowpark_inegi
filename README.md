@@ -53,43 +53,89 @@ Instalación de Snowpark
 pip install snowflake-snowpark-python pandas
 pip install lat-lon-parser
 pip install requests
+pip install notebook
 conda install -c conda-forge streamlit 
 conda install -c conda-forge pillow
 ```
 
 
+
+## Configuración config.py
+En la URL Snowflake https://<id_cuenta>.<zona_region_cuenta>.snowflakecomputing.com ejemplo: https://ly14496.south-central-us.azure.snowflakecomputing.com los valores correspondientes son:
+
+id_cuenta = ly14496
+zona_region_cuenta = south-central-us.azure
+
+En este archivo config.py ingresar los valores para cada propiedad con la información para acceder a Snowflake desde Paython usando Snowpark.
+
+```python
+connection_parameters = {
+    "account": "<id_cuenta>.<zona_region_cuenta>",
+    "user": "<tu_usuario_snowflake>",
+    "password": "<tu_contraseñan_snowflake>",
+    "warehouse": "INEGI_WH",
+    "role": "INEGI_ROLE",
+    "database": "INEGI",
+    "schema": "PUBLIC"
+}
+```
+
 ## Ejecución
 
 Ejecutar en Jupyter Notebook para cada uno de los siguientes Notebooks, puede realizarlo en  en Visual Studio Code (o terminal) ejecutar:
 
+### En el ambiente <b>Snowflake UI(Web)</b> ejecutar con role <b>ACCOUNTADMIN</b>:
+
 ```shell
-pip install notebook
+use role accountadmin;
+--objetos 
+create database inegi;
+--wharehouse
+create warehouse inegi_wh 
+warehouse_type = 'STANDARD' 
+warehouse_size =XSMALL 
+auto_suspend = 120 
+auto_resume = TRUE 
+max_cluster_count=1 
+min_cluster_count=1;
+--rol
+create role inegi_role;
+grant role inegi_role to user <tu_usuario_snowflake>;
+grant role sysadmin to user <tu_usuario_snowflake>;
+grant role sysadmin to role inegi_role;
+--privilegios  
+grant usage on database inegi to role inegi_role;
+grant all privileges on schema public to role inegi_role;
+grant usage on warehouse inegi_wh to role inegi_role;
+```
+
+
+### Activación de Notebook y Ambiente de desarrollo (terminal o VSC):
+```shell
 jupyter notebook
 conda activate snowpark_env
 ```
-Crear en snowflake una base de datos inegi y el  rol  inegi_role
-```shell
-create database inegi;
-create role inegi_role;
-grant role inegi_role to current_use();
-```
+
+
 
 <ul>
 <li>01_INEGI_download.ipynb</li>
+Ejecutar el cell el cual realizara el proceso de descarga, extracción y partición de origen CSV a JSON 
+
+```python
+#Script para ejección de descarga de archivo y realizar transformaciones (Split a JSON)
+from inegidata import urlDownload
+# opción 'remote' para descarga desde webhost de INEGI
+# opciób 'local' para descompresión desde repo local
+urlDownload('remote')
+```
+
 <li>02_INEGI_dataEngineering.ipynb</li>
 <li>03_INEGI_dataModeling.ipynb</li>
-<li>04_Streamlit.py <br>
 
-Antes de ejecutar  el notebook 02_INEGI_dataEngineering.ipynb  asegurate de  crear  con el rol SYSADMIN una base de datos  con nombre inegi y actualizar los valores  de conexión a tu instancia de Snowflake  modificando en Visual Studio Code o  en tu editor preferido el archivo config.py por ejemplo:
-```shell
-"account": "AA99900.us-east-2.aws",
-    "user": "admin_user",
-    "password": "Contraseña_usuario",
-    "warehouse": "compute_wh",
-    "role": "SYSADMIN",
-    "database": "inegi",
-    "schema": "public"
-```
+
+
+<li>04_Streamlit.py <br>
  
  Para ejecutar la aplicación  web  puedes utilizar   Visual Studio Code (o en otra terminal):
  
