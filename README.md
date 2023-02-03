@@ -119,7 +119,7 @@ Ejecutar en Jupyter Notebook para cada uno de los siguientes Notebooks, puede re
 
 <ul>
 <li><b>01_INEGI_download.ipynb</b></li>
-Ejecutar el cell el cual realizara el proceso de descarga, extracción y partición de origen CSV a JSON 
+Ejecutar el cell el cual realizara el proceso de extracción, transformación y partición de origen CSV a JSON 
 
 ```python
 #Script para ejección de descarga de archivo y realizar transformaciones (Split a JSON)
