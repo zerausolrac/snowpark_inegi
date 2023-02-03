@@ -80,13 +80,9 @@ connection_parameters = {
 }
 ```
 
-## Ejecución
-
-Ejecutar en Jupyter Notebook para cada uno de los siguientes Notebooks, puede realizarlo en  en Visual Studio Code (o terminal) ejecutar:
-
 ### En el ambiente <b>Snowflake UI(Web)</b> ejecutar con role <b>ACCOUNTADMIN</b>:
 
-```shell
+```sql
 use role accountadmin;
 --objetos 
 create database inegi;
@@ -110,12 +106,15 @@ grant usage on warehouse inegi_wh to role inegi_role;
 ```
 
 
+## Ejecución
+
 ### Activación de Notebook y Ambiente de desarrollo (terminal o VSC):
 ```shell
 jupyter notebook
 conda activate snowpark_env
 ```
 
+Ejecutar en Jupyter Notebook para cada uno de los siguientes Notebooks, puede realizarlo en  en Visual Studio Code (o terminal) ejecutar:
 
 
 <ul>
