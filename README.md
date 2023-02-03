@@ -60,19 +60,19 @@ conda install -c conda-forge pillow
 
 
 
-## Configuración config.py
+### Configuración config.py
 En la URL Snowflake https://<id_cuenta>.<zona_region_cuenta>.snowflakecomputing.com ejemplo: https://ly14496.south-central-us.azure.snowflakecomputing.com los valores correspondientes son:
 
-id_cuenta = ly14496
-zona_region_cuenta = south-central-us.azure
+id_cuenta = ly14496<br>
+zona_region_cuenta = south-central-us.azure<br>
 
 En este archivo config.py ingresar los valores para cada propiedad con la información para acceder a Snowflake desde Paython usando Snowpark.
 
 ```python
 connection_parameters = {
-    "account": "<id_cuenta>.<zona_region_cuenta>",
-    "user": "<tu_usuario_snowflake>",
-    "password": "<tu_contraseñan_snowflake>",
+    "account": "id_cuenta.zona_region_cuenta",
+    "user": "tu_usuario_snowflake",
+    "password": "tu_contraseñan_snowflake",
     "warehouse": "INEGI_WH",
     "role": "INEGI_ROLE",
     "database": "INEGI",
@@ -118,7 +118,7 @@ Ejecutar en Jupyter Notebook para cada uno de los siguientes Notebooks, puede re
 
 
 <ul>
-<li>01_INEGI_download.ipynb</li>
+<li><b>01_INEGI_download.ipynb</b></li>
 Ejecutar el cell el cual realizara el proceso de descarga, extracción y partición de origen CSV a JSON 
 
 ```python
@@ -129,12 +129,24 @@ from inegidata import urlDownload
 urlDownload('remote')
 ```
 
-<li>02_INEGI_dataEngineering.ipynb</li>
-<li>03_INEGI_dataModeling.ipynb</li>
+<li><b>02_INEGI_dataEngineering.ipynb</b></li>
+<ol>
+<li>Ejecutar los dos primeros cells para cargar las librerías necesarias y activar la sesión a Snowflake.</li>
+<li>Ejecutar el cell #Activación para crear los objectos y privilegios Snowflake</li>
+<li>Eljecutar el cell #Crear internal Stage para la carga de datos JSON ya curados</li>
+<li>Electuar e cell #Transformando a objeto Snowflake para la colocación de datos en el objeto Snowflake tabla</li>
+</ol>
 
+<li><b>03_INEGI_dataModeling.ipynb</b></li>
+<ol>
+<li>Ejecutar los dos primeros cells para cargar las librerías necesarias y activar la sesión a Snowflake.</li>
+<li>Ejecutar el cell #Crear vista para crear la vista que tendrá los datos que incluyen transformación de datos JSON en tabla INEGI_RAW</li>
+<li>Ejecutar el cell #UDF declaración para incorporar la función creada en python nom_entidad que servirá para convertir No. de entidad por nombre de entidad.</li>
+<li>Ejecutar el cell #Vista con totales por entidad aplicando para materializar datos aplicando UDF y que tendrá los totales máximos de población para cada entidad</li>
+<li>Ejecutar el cell #Validar la vista solo con totales por entidad para validar el contenido de la vista creada</li>
+</ol>
 
-
-<li>04_Streamlit.py <br>
+<li><b>04_Streamlit.py</b><br>
  
  Para ejecutar la aplicación  web  puedes utilizar   Visual Studio Code (o en otra terminal):
  
