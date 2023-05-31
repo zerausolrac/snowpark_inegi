@@ -6,7 +6,7 @@ from PIL import Image
 from style import divContainer,formatoNumero
 
 
-@st.experimental_singleton
+@st.cache_resource
 def snowsesion() -> Session:
     sesion = Session.builder.configs(connection_parameters).create()
     if sesion != None:
