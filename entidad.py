@@ -1,3 +1,4 @@
+
 def nom_entidad(entidad:int):    
  if entidad == 1: return 'AGUASCALIENTES'
  if entidad == 2: return 'BAJA CALIFORNIA'
@@ -31,3 +32,4 @@ def nom_entidad(entidad:int):
  if entidad == 30: return 'VERACRUZ DE IGNACIO DE LA LLAVE'
  if entidad == 31: return 'YUCATAN'
  if entidad == 32: return 'ZACATECAS'
+
